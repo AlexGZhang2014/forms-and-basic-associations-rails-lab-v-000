@@ -19,6 +19,13 @@ class Song < ActiveRecord::Base
     self.artist ? self.artist.name : nil
   end
   
+  def post_ids=(ids)
+     ids.each do |id|
+       post = Post.find(id)
+       self.posts << post
+     end
+   end
+  
   def note_contents=(notes)
     notes.each do |content|
       if content != ""
