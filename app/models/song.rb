@@ -29,7 +29,9 @@ class Song < ActiveRecord::Base
   def note_contents=(notes)
     notes.each do |content|
       if content != ""
-        self.notes.build(content: content)
+        note = Note.find_by(content: content)
+        self.notes << note
+        #self.notes.build(content: content)
       end
     end
   end
